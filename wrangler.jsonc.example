@@ -1,0 +1,35 @@
+/**
+ * Copy this file to wrangler.jsonc and replace YOUR_KV_NAMESPACE_ID
+ * with the ID from: npx wrangler kv namespace create PROJECT_PLANNER_STORE
+ */
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "projectplannermcp",
+	"main": "src/index.ts",
+	"compatibility_date": "2025-03-10",
+	"compatibility_flags": ["nodejs_compat"],
+	"migrations": [
+		{
+			"new_sqlite_classes": ["MyMCP"],
+			"tag": "v1"
+		}
+	],
+	"durable_objects": {
+		"bindings": [
+			{
+				"class_name": "MyMCP",
+				"name": "MCP_OBJECT"
+			}
+		]
+	},
+	"observability": {
+		"enabled": true
+	},
+	"upload_source_maps": true,
+	"kv_namespaces": [
+		{
+			"binding": "PROJECT_PLANNER_STORE",
+			"id": "YOUR_KV_NAMESPACE_ID"
+		}
+	]
+}
